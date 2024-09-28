@@ -69,3 +69,22 @@ function mousePressed() {
         });
     }
 }
+
+// タッチされたときに線を追加
+function touchStarted() {
+    // 新しい線をタッチされた位置に追加
+    let branchCount = 10; // 分岐数
+    for(let j = 0; j < branchCount; j++){
+        lines.push({
+            x: touchX,            // 線のX座標(終点)
+            y: touchY,            // 線のY座標(終点)
+            px: touchX,           // 線のX座標(始点)
+            py: touchY,           // 線のY座標(始点)          
+            w: random(10, 20),    // 線の太さ（ランダムに太さを持たせる）
+            v: random(-0.5, 0.5), // X座標初期変位（幹は最初は直線的）
+            u: random(-5, -10),   // y座標初期変位（上方向に伸びる）
+            lifespan: lifespan    // 線の持続時間
+        });
+    }
+    return false; // デフォルトのタッチイベントを無効化（スクロール防止）
+}
