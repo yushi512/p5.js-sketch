@@ -7,7 +7,6 @@ function setup() {
 }
 
 function draw() {
-    //background(255, 255, 255, 50); // 背景をわずかに透明にしてトレイル効果
     for (let i = lines.length - 1; i >= 0; i--) {
         let lineData = lines[i];
 
@@ -30,10 +29,8 @@ function draw() {
 
         // 線の変位の更新
         if (lineData.lifespan > lifespan / 2) {
-            // 初期段階では変位を小さくして直線的にする
             lineData.v += random(-0.5, 0.5);  // X方向の揺れを抑える
         } else {
-            // 寿命が半分を過ぎたら枝が広がるように揺れを大きくする
             lineData.v += random(-2, 2);
         }
         lineData.u *= 0.98;           // Y方向は徐々に減速（重力のような効果）
@@ -50,8 +47,6 @@ function draw() {
 
     frameRate(60);
 }
-
-
 
 // 線を追加する共通関数
 function addLine(x) {
@@ -77,6 +72,9 @@ function mousePressed() {
 
 // タッチされたとき
 function touchStarted() {
-    addLine(touches);
+    // 最初のタッチポイントのX座標を取得
+    if (touches.length > 0) {
+        addLine(touches[0].x);
+    }
     return false; // デフォルトのタッチイベントを無効化（スクロール防止）
 }
