@@ -20,7 +20,7 @@ function draw() {
         lineData.y += lineData.u;  // Y方向への変位
 
         if (abs(lineData.x - lineData.x0) > width / 3) {
-            lineData.lifespan = 0
+            lineData.lifespan = 0;
         }
 
         // 線の始点を更新
@@ -49,14 +49,14 @@ function draw() {
 }
 
 // 線を追加する共通関数
-function addLine(x) {
+function addLine(x, y) {
     let branchCount = 10; // 分岐数
     for(let j = 0; j < branchCount; j++){
         lines.push({
             x: x,                 // 線のX座標(終点)
-            y: height,            // 線のY座標をheightに固定
+            y: y,                 // 線のY座標(終点)
             px: x,                // 線のX座標(始点)
-            py: height,           // 線のY座標をheightに固定          
+            py: y,                // 線のY座標(始点)
             w: random(10, 20),    // 線の太さ（ランダムに太さを持たせる）
             v: random(-0.5, 0.5), // X座標初期変位（幹は最初は直線的）
             u: random(-5, -10),   // y座標初期変位（上方向に伸びる）
@@ -67,14 +67,13 @@ function addLine(x) {
 
 // マウスがクリックされたとき
 function mousePressed() {
-    addLine(mouseX);
+    addLine(mouseX, mouseY);
 }
 
 // タッチされたとき
 function touchStarted() {
-    // 最初のタッチポイントのX座標を取得
     if (touches.length > 0) {
-        addLine(touches[0].x);
+        addLine(touches[0].x, touches[0].y);  // タッチ位置のX, Y座標を渡す
     }
     return false; // デフォルトのタッチイベントを無効化（スクロール防止）
 }
