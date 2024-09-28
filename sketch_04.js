@@ -77,6 +77,6 @@ function mousePressed() {
 
 // タッチされたとき
 function touchStarted() {
-    addLine(touchX);
+    addLine(touchesX);
     return false; // デフォルトのタッチイベントを無効化（スクロール防止）
 }
