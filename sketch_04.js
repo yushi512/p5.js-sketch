@@ -3,7 +3,6 @@ let lifespan = 1000;  // 線の持続時間（ミリ秒）
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background(0);
 }
 
 function draw() {
@@ -11,17 +10,17 @@ function draw() {
         let lineData = lines[i];
 
         // 線を描く
-        stroke(255);
-        strokeWeight(lineData.w);
-        line(lineData.px, lineData.py, lineData.x, lineData.y);
+        //stroke(0);
+        //strokeWeight(lineData.w);
+        //line(lineData.px, lineData.py, lineData.x, lineData.y);
+
+        fill(0);
+        circle(lineData.x, lineData.y, lineData.w);
+
 
         // 線の終点を更新して枝を伸ばす
         lineData.x += lineData.v;  // X方向への変位
         lineData.y += lineData.u;  // Y方向への変位
-
-        if (abs(lineData.x - lineData.x0) > width / 3) {
-            lineData.lifespan = 0;
-        }
 
         // 線の始点を更新
         lineData.px = lineData.x;
@@ -33,7 +32,7 @@ function draw() {
         } else {
             lineData.v += random(-2, 2);
         }
-        lineData.u *= 0.98;           // Y方向は徐々に減速（重力のような効果）
+        lineData.u *= 0.98;  // Y方向は徐々に減速（重力のような効果）
 
         // 線の太さを徐々に細くする
         lineData.w *= 0.98;
