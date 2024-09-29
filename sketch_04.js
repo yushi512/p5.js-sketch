@@ -42,6 +42,10 @@ function draw() {
         if (lineData.lifespan <= 0) {
             lines.splice(i, 1); // 寿命が切れたら削除
         }
+
+        if (abs(lineData.x - lineData.x0) > width / 3){
+            lineData.lifespan = 0;
+        }
     }
 
     frameRate(60);
@@ -49,13 +53,14 @@ function draw() {
 
 // 線を追加する共通関数
 function addLine(x, y) {
-    let branchCount = 10; // 分岐数
+    let branchCount =20; // 分岐数
     for(let j = 0; j < branchCount; j++){
         lines.push({
             x: x,                 // 線のX座標(終点)
             y: y,                 // 線のY座標(終点)
             px: x,                // 線のX座標(始点)
             py: y,                // 線のY座標(始点)
+            x0: mouseX,           // x座標の初期値
             w: random(10, 20),    // 線の太さ（ランダムに太さを持たせる）
             v: random(-0.5, 0.5), // X座標初期変位（幹は最初は直線的）
             u: random(-5, -10),   // y座標初期変位（上方向に伸びる）
