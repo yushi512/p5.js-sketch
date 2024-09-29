@@ -37,13 +37,16 @@ function draw() {
 // マウスがクリックされたときに円を追加
 function mousePressed() {
     // 新しい円をクリックした位置から広がるように追加
-    circles.push({
-        x: mouseX,                 // 円のX座標
-        y: mouseY,                 // 円のY座標
+    for (let j = 0; j < 20; j ++){
+        circles.push({
+        x: mouseX + random(-50, 50), // 円のX座標
+        y: mouseY + random(-50, 50), // 円のY座標
         r: 0,                      // 初期半径
         h: random(0, 255),         // 色相
         s: 255,                    // 彩度
-        b: 100,                    // 明度
+        b: 50,                     // 明度
         lifespan: lifespan         // 波紋の持続時間
     });
+    }
+    
 }
