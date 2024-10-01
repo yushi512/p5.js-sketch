@@ -53,7 +53,7 @@ function draw() {
 
 // 線を追加する共通関数
 function addLine(x, y) {
-    let branchCount =20; // 分岐数
+    let branchCount = 20; // 分岐数
     for(let j = 0; j < branchCount; j++){
         lines.push({
             x: x,                 // 線のX座標(終点)
